@@ -19,7 +19,8 @@ RUN apk --update add --virtual build-dependencies \
   libffi-dev \
   openssl-dev \
   python3-dev \
-  py3-psycopg2
+  py3-psycopg2 \
+  py3-pip
 
 COPY requirements.txt /tmp/requirements.txt
 
@@ -34,7 +35,7 @@ RUN mkdir -p /etc/ansible /ansible
 RUN apk del build-dependencies && \
   rm -rf /var/cache/apk/*
 
-# Create Terraform User
+# Create Ansible User
 RUN addgroup -S ansible && adduser -S ansible -G ansible
 
 ENV ANSIBLE_GATHERING smart

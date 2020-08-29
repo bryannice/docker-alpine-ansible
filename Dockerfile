@@ -34,15 +34,18 @@ RUN mkdir -p /etc/ansible /ansible
 RUN apk del build-dependencies && \
   rm -rf /var/cache/apk/*
 
+# Create Terraform User
+RUN addgroup -S ansible && adduser -S ansible -G ansible
+
 ENV ANSIBLE_GATHERING smart
 ENV ANSIBLE_HOST_KEY_CHECKING false
 ENV ANSIBLE_RETRY_FILES_ENABLED false
-ENV ANSIBLE_ROLES_PATH /ansible/playbooks/roles
+ENV ANSIBLE_ROLES_PATH /home/ansible/roles
 ENV ANSIBLE_SSH_PIPELINING True
 ENV PYTHONPATH /ansible/lib
 ENV PATH /ansible/bin:$PATH
 ENV ANSIBLE_LIBRARY /ansible/library
 
-WORKDIR /ansible/playbooks
+USER ansible
 
-CMD ["ansible-playbook"]
+WORKDIR /home/ansible

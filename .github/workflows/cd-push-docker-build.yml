@@ -34,7 +34,9 @@ jobs:
             bryannice/alpine-ansible:latest
             bryannice/alpine-ansible:${{ steps.get_tag_name.outputs.tag_name }}
       - name: Push to docker hub
-        run: docker push bryannice/alpine-ansible --all-tags
+        run: |
+          docker push bryannice/alpine-ansible:latest
+          docker push bryannice/alpine-ansible:${{ steps.get_tag_name.outputs.tag_name }}
       - name: Update Docker Hub Description
         uses: peter-evans/dockerhub-description@v2.4.1
         if: success()

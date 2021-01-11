@@ -23,7 +23,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      - name: Build Terraform Docker Image
+      - name: Build Ansible Docker Image
         id: build_terraform_docker_image
         uses: docker/build-push-action@v2
         with:
@@ -34,7 +34,7 @@ jobs:
             bryannice/alpine-ansible:latest
             bryannice/alpine-ansible:${{ steps.get_tag_name.outputs.tag_name }}
       - name: Push to docker hub
-        run: docker push bryannice/alpine-ansible:${{ steps.get_tag_name.outputs.tag_name }}
+        run: docker push bryannice/alpine-ansible --all-tags
       - name: Update Docker Hub Description
         uses: peter-evans/dockerhub-description@v2.4.1
         if: success()

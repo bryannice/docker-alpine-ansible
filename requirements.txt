@@ -4,4 +4,4 @@ pywinrm==0.4.1
 pywinrm[credssp]
 pywinrm[kerberos]
 requests-credssp==1.2.0
-requests-kerberos==1.2.0
+requests-kerberos==0.12.0

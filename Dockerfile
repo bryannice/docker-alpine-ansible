@@ -6,6 +6,7 @@ ENV BUILD_PACKAGES \
   bash \
   curl \
   git \
+  krb5-dev \
   libssl1.1 \
   openssh-client \
   sshpass \
@@ -14,7 +15,6 @@ ENV BUILD_PACKAGES \
 RUN apk --update add --virtual build-dependencies \
   cargo \
   gcc \
-  krb5-dev \
   libffi-dev \
   make \
   musl-dev \

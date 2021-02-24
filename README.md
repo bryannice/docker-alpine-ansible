@@ -6,7 +6,7 @@ Docker image used as the environment to use for testing Ansible playbooks.
 
 ```makefile
   make \
-    STEP_1_IMAGE="alpine:3.12" \
+    STEP_1_IMAGE="python:3.9.2-alpine3.13" \
     docker-build
 ```
 

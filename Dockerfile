@@ -1,27 +1,25 @@
-ARG STEP_1_IMAGE=alpine:3.12
+ARG STEP_1_IMAGE=python:3.9.2-alpine3.13
 
 FROM ${STEP_1_IMAGE} AS STEP_1
 
 ENV BUILD_PACKAGES \
   bash \
   curl \
-  tar \
-  openssh-client \
-  sshpass \
   git \
   libssl1.1 \
-  python3 \
-  py3-psycopg2 \
-  py3-pip
-
+  openssh-client \
+  sshpass \
+  tar
 
 RUN apk --update add --virtual build-dependencies \
-  make \
+  cargo \
   gcc \
-  musl-dev \
+  krb5-dev \
   libffi-dev \
+  make \
+  musl-dev \
   openssl-dev \
-  python3-dev
+  rust
 
 COPY requirements.txt /tmp/requirements.txt
 

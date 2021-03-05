@@ -28,7 +28,8 @@ RUN set -x && \
   apk update && apk upgrade && \
   apk add --no-cache ${BUILD_PACKAGES} && \
   python3 -m pip install --upgrade pip && \
-  python3 -m pip install -r /tmp/requirements.txt
+  python3 -m pip install -r /tmp/requirements.txt && \
+  ansible-galaxy collection install ansible.windows
 
 RUN apk del build-dependencies && \
   rm -rf /var/cache/apk/*
